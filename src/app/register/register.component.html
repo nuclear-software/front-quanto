@@ -1,0 +1,10 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" text="{{'singup' | L}}"></Label>
+</ActionBar>
+<ScrollView>
+    <StackLayout class="page p-t-15">
+        <RadDataForm #myForm [source]="register" [metadata]="registerMetadata"></RadDataForm>
+
+        <Button [isEnabled]="! myForm.dataForm.isReadOnly" class="btn btn-primary" text="{{'singup' | L}}" (tap)="onSignupButtonTap()"></Button>
+    </StackLayout>
+</ScrollView>

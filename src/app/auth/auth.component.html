@@ -1,0 +1,12 @@
+<ScrollView>
+    <StackLayout class="page p-t-30">
+        
+        <Image src="res://logo2" class="logo-with-text m-y-30"></Image>
+
+        <RadDataForm #myForm [source]="login" [metadata]="loginMetadata"></RadDataForm>
+
+        <Button [isEnabled]="! myForm.dataForm.isReadOnly" class="btn btn-primary" text="{{'singin' | L}}" (tap)="onSigninButtonTap()"></Button>
+        <Button class="btn btn-outline" text="{{'singup' | L}}" [nsRouterLink]="['/register']"></Button>
+        <!-- <Label class="m-y-10 m-x-15" text="Forgot password?" (tap)="onForgotPasswordTap()"></Label> -->
+    </StackLayout>
+</ScrollView>

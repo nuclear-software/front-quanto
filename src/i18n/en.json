@@ -1,0 +1,16 @@
+{
+    "app.name": "Quanto",
+    "test": "prueba",
+    "home": "Home",
+    "browse": "Browse",
+    "search": "Search",
+    "featured": "Featured",
+    "settings": "Settings",
+    "login": "Login",
+    "uid": "Email Address",
+    "password": "Password",
+    "singin": "Sing In",
+    "singup": "Sing Up",
+    "username": "Name",
+    "phone": "Phone"
+}

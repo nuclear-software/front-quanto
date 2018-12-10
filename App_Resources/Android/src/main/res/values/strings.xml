@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="phone">"Teléfono"</string>
+  <string name="username">"Nombre"</string>
+  <string name="singup">"Registrarse"</string>
+  <string name="singin">"Iniciar Sesión"</string>
+  <string name="password">"Contraseña"</string>
+  <string name="uid">"Correo Electrónico"</string>
+  <string name="login">"Iniciar Sesión"</string>
+  <string name="settings">"Configuración"</string>
+  <string name="featured">"Destacado"</string>
+  <string name="search">"Buscar"</string>
+  <string name="browse">"Navegar"</string>
+  <string name="home">"Inicio"</string>
+  <string name="test">"prueba"</string>
+  <string name="_app_name_1k3Sbz">"Quanto"</string>
+  <string name="app_name">"Quanto"</string>
+  <string name="title_activity_kimera">"Quanto"</string>
+</resources>

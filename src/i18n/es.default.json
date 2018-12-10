@@ -1,0 +1,16 @@
+{
+    "app.name": "Quanto",
+    "test": "prueba",
+    "home": "Inicio",
+    "browse": "Navegar",
+    "search": "Buscar",
+    "featured": "Destacado",
+    "settings": "Configuración",
+    "login": "Iniciar Sesión",
+    "uid": "Correo Electrónico",
+    "password": "Contraseña",
+    "singin": "Iniciar Sesión",
+    "singup": "Registrarse",
+    "username": "Nombre",
+    "phone": "Teléfono"
+}

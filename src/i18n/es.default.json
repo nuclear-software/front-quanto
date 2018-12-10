@@ -12,5 +12,7 @@
     "singin": "Iniciar Sesión",
     "singup": "Registrarse",
     "username": "Nombre",
-    "phone": "Teléfono"
+    "phone": "Teléfono",
+    "products": "Productos",
+    "tables": "Mesas"
 }

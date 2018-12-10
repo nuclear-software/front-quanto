@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <string name="tables">"Mesas"</string>
+  <string name="products">"Productos"</string>
   <string name="phone">"Teléfono"</string>
   <string name="username">"Nombre"</string>
   <string name="singup">"Registrarse"</string>

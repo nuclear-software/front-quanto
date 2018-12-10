@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <string name="tables">"Company Tables"</string>
+  <string name="products">"Products"</string>
   <string name="phone">"Phone"</string>
   <string name="username">"Name"</string>
   <string name="singup">"Sing Up"</string>

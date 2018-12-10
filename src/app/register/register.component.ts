@@ -3,6 +3,9 @@ import { localize } from "nativescript-localize";
 import { RadDataFormComponent } from "nativescript-ui-dataform/angular";
 import { RegisterService } from "./register.service";
 import { RouterExtensions } from "nativescript-angular/router";
+import User from '~/models/User';
+import Company from '~/models/Company';
+import { __await } from 'tslib';
 
 /* ***********************************************************
 * Before you can navigate to this page from your app, you need to reference this page's module in the
@@ -89,13 +92,32 @@ export class RegisterComponent implements OnInit {
         const isValid = await this.dataFormComp.dataForm.validateAndCommitAll();
 
         if(isValid){
-            this.registerService.register(this.register).then( (response) => {
+            let company= new Company();
+            company.name= this.register.email;
+            await company.save();
+
+            let user= new User();
+            user.name= this.register.name;
+            user.email= this.register.email;
+            user.password= this.register.password;
+            user.phone= this.register.phone;
+            user.company= company;
+
+            await user.save().then( (response) => {
                 console.dir(response);
                 this.routerExtensions.navigate(["/auth"]);
             }).catch((error)=>{
                 console.error(error);
                 this.dataFormComp.dataForm.isReadOnly= false;
             });
+
+            // this.registerService.register(this.register).then( (response) => {
+            //     console.dir(response);
+            //     this.routerExtensions.navigate(["/auth"]);
+            // }).catch((error)=>{
+            //     console.error(error);
+            //     this.dataFormComp.dataForm.isReadOnly= false;
+            // });
         }else{
             this.dataFormComp.dataForm.isReadOnly= false;
         }

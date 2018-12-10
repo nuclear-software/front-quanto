@@ -15,5 +15,34 @@
     <Label class="action-bar-title" text="Products"></Label>
 </ActionBar>
 
-<StackLayout class="page">
-</StackLayout>
+<GridLayout class="page">
+    <GridLayout rows="*,9*" columns="*,auto">
+        <SearchBar row="0" col="0" hint="Buscar Producto"
+                    [text]="searchPhrase" 
+                    (textChange)="onTextChanged($event)"
+                    (submit)="onSubmit($event)" 
+                    color="black"
+                    textFieldHintColor="gray">
+        </SearchBar>
+        <button class="fa icon" text="&#xf067;" row="0" col="1" (tap)="add()"></button>
+
+        <ListView *ngIf="mode=='retrive'" row="1" colSpan="2" [items]="products" (itemTap)="onItemTap($event)" class="list-group">
+            <ng-template let-product="item" let-i="index" let-odd="odd" let-even="even">
+                <GridLayout rows="auto,auto,auto" columns="*,auto,auto" class="list-group-item">
+                    <Label class="list-group-item-heading" row="0" col="0" [text]="product.name"></Label>
+                    <Label class="list-group-item-text" row="1" col="0" [text]="product.image"></Label>
+                    <Label class="list-group-item-text" row="2" col="0" [text]="product.price"></Label>
+                    <Button class="fa icon" rowSpan="3" col="1" text="&#xf044;" (tap)="edit(product)"></Button>
+                    <Button class="fa icon text-danger" rowSpan="3" col="2" text="&#xf1f8;" (tap)="remove(product)"></Button>
+                </GridLayout>
+            </ng-template>
+        </ListView>
+        <ScrollView *ngIf="mode=='create'||mode=='update'" row="1" colSpan="2" class="m-t-30">
+            <StackLayout>            
+                <RadDataForm #myForm [source]="product" [metadata]="productMetadata"></RadDataForm>
+                <button class="btn btn-primary m-x-5" text="Guardar" (tap)="checkErrors()"></button>
+                <button class="btn btn-outline m-x-5" text="Cancelar" (tap)="changeMode('retrive')"></button>            
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+</GridLayout>

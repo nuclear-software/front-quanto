@@ -5,6 +5,7 @@ import { RadDataFormComponent } from "nativescript-ui-dataform/angular";
 import { setString } from "tns-core-modules/application-settings";
 import { AuthService } from "./auth.service";
 import { RouterExtensions } from "nativescript-angular/router";
+import User from '~/models/User';
 
 /* ***********************************************************
 * Before you can navigate to this page from your app, you need to reference this page's module in the
@@ -71,7 +72,7 @@ export class AuthComponent implements OnInit {
         const isValid = await this.dataFormComp.dataForm.validateAndCommitAll();
 
         if(isValid){
-            this.authService.login(this.login).then( (response) => {
+            let user = await User.findOneOrFail({ where: { email: this.login.email, password: this.login.password } }).then((response)=>{
                 console.dir(response);
                 setString('current_user', JSON.stringify(response));
                 this.routerExtensions.navigate(["/home"]);
@@ -79,6 +80,14 @@ export class AuthComponent implements OnInit {
                 console.error(error);
                 this.dataFormComp.dataForm.isReadOnly= false;
             });
+            // this.authService.login(this.login).then( (response) => {
+            //     console.dir(response);
+            //     setString('current_user', JSON.stringify(response));
+            //     this.routerExtensions.navigate(["/home"]);
+            // }).catch((error)=>{
+            //     console.error(error);
+            //     this.dataFormComp.dataForm.isReadOnly= false;
+            // });
         }else{
             this.dataFormComp.dataForm.isReadOnly= false;
         }

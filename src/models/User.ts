@@ -1,4 +1,4 @@
-import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne} from "typeorm/browser";
+import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne, JoinColumn} from "typeorm/browser";
 import Product from './Product';
 import Company from './Company';
 
@@ -19,8 +19,12 @@ export default class User extends BaseEntity {
     @Column()
     phone: string;
 
-    @OneToMany(type => Company, company => company.user)
-    companies: Company[];
+    // @OneToMany(type => Company, company => company.user)
+    // companies: Company[];
+
+    @OneToOne(type => Company )
+    @JoinColumn()
+    company: Company;
 
     // constructor(name: string, email: string, password: string, phone: string,) {
     //     super();

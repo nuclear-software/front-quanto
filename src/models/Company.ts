@@ -1,4 +1,4 @@
-import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne} from "typeorm/browser";
+import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne} from "typeorm/browser";
 import Product from './Product';
 import User from './User';
 import CompanyTable from './CompanyTable';
@@ -11,8 +11,8 @@ export default class Company extends BaseEntity {
     @Column()
     name: string;
 
-    @ManyToOne(type => User, user => user.companies)
-    user: User;
+    // @OneToOne(type => User, user => user.company)
+    // user: User;
 
     @OneToMany(type => Product, product => product.company)
     products: Product[];

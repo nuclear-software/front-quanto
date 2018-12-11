@@ -13,16 +13,12 @@ export default class CompanyTable extends BaseEntity {
     @Column()
     identifier: string;
 
+    @Column()
+    available: boolean;
+
     @OneToMany(type => Account, account => account.companyTable)
     accounts: Account[];
 
     @ManyToOne(type => Company, company => company.companyTables)
     company: Company;
-
-    // constructor(name: string, description: string) {
-    //     super();
-    //     this.name = name;
-    //     this.description = description;
-    // }
-
 }

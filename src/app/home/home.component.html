@@ -12,10 +12,67 @@
     <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
         ios.position="left">
     </ActionItem>
-    <Label class="action-bar-title" text="Home"></Label>
+    <Label class="action-bar-title" [text]="barTitle"></Label>
+    <ActionItem *ngIf="showAdd" (tap)="add()">
+        <button class="action-item fa" text="add &#xf067;"></button>
+    </ActionItem>
 </ActionBar>
 
-<GridLayout class="page page-content">
-    <Label class="page-icon fa" text="&#xf015;"></Label>
-    <Label class="page-placeholder" text="<!-- Page content goes here -->"></Label>
+<GridLayout class="page">
+    <ListView *ngIf="mode=='retrive'" [items]="accounts" (itemTap)="onItemTap($event)" class="list-group">
+        <ng-template let-account="item" let-i="index" let-odd="odd" let-even="even">
+            <GridLayout rows="auto,auto" columns="*,auto,auto" class="list-group-item">
+                <Label class="list-group-item-heading" row="0" col="0" [text]="account.companyTable.name"></Label>
+                <Label class="list-group-item-text" row="1" col="0" text="{{calcularTotal(account)|currency}}"></Label>
+                <Button class="fa icon" rowSpan="2" col="1" text="&#xf044;" (tap)="edit(account)"></Button>
+                <Button class="fa icon text-danger" rowSpan="2" col="2" text="&#xf1f8;" (tap)="remove(account)"></Button>
+            </GridLayout>
+        </ng-template>
+    </ListView>
+    <GridLayout *ngIf="mode=='create'" rows="*,auto" columns="*" class="p-t-30">
+        <StackLayout row="0" col="0">
+            <label class="h3 text-center" text="Mesas disponibles"></label>
+            <ListView [items]="companyTables" class="list-group">
+                <ng-template let-companyTable="item" let-i="index" let-odd="odd" let-even="even">
+                    <GridLayout rows="auto,auto" columns="*" class="list-group-item" (tap)="onTableTap(companyTable)">
+                        <Label class="list-group-item-heading" row="0" col="0" [text]="companyTable.name"></Label>
+                        <Label class="list-group-item-text" row="1" col="0" [text]="companyTable.identifier"></Label>
+                    </GridLayout>
+                </ng-template>
+            </ListView>
+        </StackLayout>
+        <button row="1" col="0" class="btn btn-outline m-x-5" text="Cancelar" (tap)="changeMode('retrive')"></button>
+    </GridLayout>
+
+    <GridLayout *ngIf="mode=='update'" rows="auto,*,auto">
+
+        <Scrollview orientation="horizontal" row="0" class="list-group">
+            <StackLayout orientation="horizontal">
+                <GridLayout width="120" *ngFor="let product of products" rows="auto,auto" class="list-group-item" (tap)="onProductTap(product)">
+                    <Image row="0" [src]="product.image" width="40" height="40"></Image>
+                    <Label row="1" [text]="product.name" class="list-group-item-text text-center"></Label>
+                </GridLayout>
+            </StackLayout>
+        </Scrollview>
+        <ListView row="1" [items]="productReferences" class="list-group">
+            <ng-template let-productReference="item" let-i="index" let-odd="odd" let-even="even">
+                <GridLayout rows="auto,auto" columns="auto,*,auto,auto,auto,auto" class="list-group-item">
+                    <Image rowSpan="2" col="0" [src]="productReference.product.image" class="thumb img-circle"></Image>
+                    <Label class="list-group-item-heading" [textWrap]="true" row="0" col="1" [text]="productReference.product.name"></Label>
+                    <Label class="list-group-item-text" row="1" col="1" text="{{productReference.product.price*productReference.quantity | currency}}"></Label>
+                    <Button [isEnabled]="productReference.quantity>1" class="fa icon" rowSpan="2" col="2" text="&#xf056;" (tap)="minus(productReference)"></Button>
+                    <Label class="list-group-item-text" rowSpan="2" col="3" [text]="productReference.quantity"></Label>
+                    <Button class="fa icon" rowSpan="2" col="4" text="&#xf055;" (tap)="plus(productReference)"></Button>
+                    <Button class="fa icon text-danger" rowSpan="2" col="5" text="&#xf00d;" (tap)="delete(productReference)"></Button>
+                </GridLayout>
+            </ng-template>
+        </ListView>
+        <GridLayout row="2" rows="auto,auto,auto" columns="*,*,*,*">
+            <TextField row="0" colSpan="4" class="text-center input input-border m-x-5" hint="Dinero recibido" keyboardType="number" [(ngModel)]="recibido"></TextField>
+            <Label class="text-center" row="1" colSpan="2" col="0" text="Total: {{calcularTotal(account)|currency}}"></Label>
+            <Label class="text-center" row="1" colSpan="2" col="2" text="Cambio: {{calcularCambio(account)|currency}}"></Label>
+            <button row="2" colSpan="2" col="0" class="btn btn-outline m-x-5" text="Volver" (tap)="changeMode('retrive')"></button>
+            <button row="2" colSpan="2" col="2" class="btn btn-primary m-x-5" text="Cerrar y Cobrar" (tap)="close(account)"></button>
+        </GridLayout>
+    </GridLayout>
 </GridLayout>

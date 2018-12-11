@@ -21,11 +21,4 @@ export default class Product extends BaseEntity {
 
     @OneToMany(type => ProductReference, productReference => productReference.product)
     productReferences: ProductReference[];
-
-    // constructor(name: string, description: string) {
-    //     super();
-    //     this.name = name;
-    //     this.description = description;
-    // }
-
 }

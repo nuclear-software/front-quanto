@@ -61,6 +61,10 @@ export class TablesComponent implements OnInit {
             {
                 "name": "company",
                 "hidden":true
+            },
+            {
+                "name": "available",
+                "hidden":true
             }
         ]
     };
@@ -77,6 +81,7 @@ export class TablesComponent implements OnInit {
         this.companyTable = new CompanyTable();
         this.companyTable.name='';
         this.companyTable.identifier='';
+        this.companyTable.available=true;
         //this.companyTable.company= this.company;
 
         // let companyTables= await CompanyTable.createQueryBuilder("companyTable")
@@ -142,6 +147,7 @@ export class TablesComponent implements OnInit {
         this.companyTable = new CompanyTable();
         this.companyTable.name='';
         this.companyTable.identifier='';
+        this.companyTable.available=true;
         this.companyTable.company= this.company;
         this.changeMode('create');
     }
@@ -200,6 +206,7 @@ export class TablesComponent implements OnInit {
                 this.companyTable = new CompanyTable();
                 this.companyTable.name='';
                 this.companyTable.identifier='';
+                this.companyTable.available=true;
     
                 this.companyTable.company= this.company;
                 this.mode= 'retrive';

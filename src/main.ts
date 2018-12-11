@@ -8,7 +8,6 @@ var driver = require( "nativescript-sqlite" );
 
 import Company from './models/Company';
 import Account from './models/Account';
-import AccountComponent from './models/AccountComponent';
 import CompanyTable from './models/CompanyTable';
 import Product from './models/Product';
 import ProductReference from './models/ProductReference';
@@ -21,7 +20,7 @@ import User from './models/User';
             type: 'nativescript',
             driver,
             entities: [
-                Account, AccountComponent, Company, CompanyTable, Product, ProductReference, User
+                Account, Company, CompanyTable, Product, ProductReference, User
             ],
             logging: true
         })

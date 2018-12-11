@@ -1,6 +1,6 @@
 import {BaseEntity, Entity, PrimaryGeneratedColumn, OneToMany, ManyToOne} from "typeorm/browser";
-import AccountComponent from './AccountComponent';
 import CompanyTable from './CompanyTable';
+import ProductReference from './ProductReference';
 
 @Entity()
 export default class Account extends BaseEntity {
@@ -10,15 +10,6 @@ export default class Account extends BaseEntity {
     @ManyToOne(type => CompanyTable, companyTable => companyTable.accounts)
     companyTable: CompanyTable;
 
-    @OneToMany(type => AccountComponent, accountComponent => accountComponent.account)
-    accountComponents: AccountComponent[];
-
-    // constructor(name: string, email: string, password: string, phone: string,) {
-    //     super();
-    //     this.name = name;
-    //     this.email = email;
-    //     this.password = password;
-    //     this.phone = phone;
-    // }
-
+    @OneToMany(type => ProductReference, productReference => productReference.account)
+    productReferences: ProductReference[];
 }
